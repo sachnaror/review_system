@@ -1,5 +1,33 @@
 import os
 from dotenv import load_dotenv
+from pathlib import Path
+
+load_dotenv()  # Load .env file
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+SECRET_KEY = os.getenv('SECRET_KEY', 'fallback-secret-key')
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1').split(',')
+
+# Database Configuration
+DATABASES = {
+    'default': {
+        'ENGINE': os.getenv('DATABASE_ENGINE', 'django.db.backends.sqlite3'),
+        'NAME': BASE_DIR / os.getenv('DATABASE_NAME', 'db.sqlite3'),
+        'USER': os.getenv('DATABASE_USER', ''),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD', ''),
+        'HOST': os.getenv('DATABASE_HOST', ''),
+        'PORT': os.getenv('DATABASE_PORT', ''),
+    }
+}
+
+
+
+
+
+import os
+from dotenv import load_dotenv
 load_dotenv()
 #OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 SECRET_KEY = os.getenv('SECRET_KEY', 'default_secret_key')  # Example for a secret key
@@ -50,17 +78,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'review_system.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 
 
 # Password validation
