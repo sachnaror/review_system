@@ -10,7 +10,8 @@ class Business(models.Model):
     city = models.CharField(max_length=100)
     location = models.CharField(max_length=255)
     phone = models.CharField(max_length=15)
-    google_business_id = models.CharField(max_length=50)  # Added Google Business ID for linking
+    #google_business_id = models.CharField(max_length=50)  # Added Google Business ID for linking
+    google_business_id = models.CharField(max_length=50, default="default_id")
     qr_code = models.ImageField(upload_to='qrcodes/', blank=True)
 
     def __str__(self):
@@ -32,6 +33,7 @@ class Review(models.Model):
     rating = models.IntegerField()
     comment = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
 
     def __str__(self):
         return f"Review for {self.business.name} - {self.rating} Stars"
