@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ business.name }} - Details</title>
+</head>
+<body>
+    <h1>{{ business.name }}</h1>
+    <p>Google Business ID: {{ business.google_business_id }}</p>
+    <img src="{{ business.qr_code.url }}" alt="{{ business.name }} QR Code">
+    <a href="{% url 'home' %}">Back to Home</a>
+</body>
+</html>

@@ -24,7 +24,6 @@ def review_stars(request, id):
 def feedback(request):
     return render(request, 'feedback.html')
 
-from pathlib import Path
-
-BASE_DIR = Path(__file__).resolve().parent.parent
-print((BASE_DIR / 'reviews/templates/reviews/home.html').exists())
+def business_detail(request, google_business_id):
+    business = get_object_or_404(Business, google_business_id=google_business_id)
+    return render(request, 'reviews/business_detail.html', {'business': business})
