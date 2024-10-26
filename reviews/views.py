@@ -1,18 +1,17 @@
-from django.shortcuts import render, redirect
-from django.http import JsonResponse
+# reviews/views.py
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Business
+from .utils import generate_qr_code
 
-def index(request):
-    """Main page for rating submission."""
-    return render(request, 'reviews/index.html')
+def business_qr_view(request, id):
+    business = get_object_or_404(Business, id=id)
+    if not business.qr_code:
+        generate_qr_code(business)
+    return render(request, 'business_qr.html', {'business': business})
 
-def thank_you(request):
-    """Thank you page for 4-5 star ratings."""
-    return render(request, 'reviews/thank_you.html')
+def review_stars(request, id):
+    business = get_object_or_404(Business, id=id)
+    return render(request, 'review_stars.html', {'business': business})
 
 def feedback(request):
-    """Feedback page for 1-3 star ratings."""
-    if request.method == 'POST':
-        feedback_text = request.POST.get('feedback')
-        # Save feedback_text to the database or process it as required
-        return redirect('index')  # Redirect to home after feedback submission
-    return render(request, 'reviews/feedback.html')
+    return render(request, 'feedback.html')

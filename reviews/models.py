@@ -30,3 +30,11 @@ class Review(models.Model):
 
     def __str__(self):
         return f"Review for {self.business.name} - {self.rating} Stars"
+
+class Business(models.Model):
+    name = models.CharField(max_length=100)
+    google_business_id = models.CharField(max_length=50)
+    qr_code = models.ImageField(upload_to='qr_codes/', blank=True)
+
+    def __str__(self):
+        return self.name
