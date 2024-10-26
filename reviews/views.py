@@ -6,6 +6,10 @@ from .utils import \
     generate_qr_code  # Ensure generate_qr_code is properly imported
 
 
+def home(request):
+    businesses = Business.objects.all()  # Get all businesses
+    return render(request, 'home.html', {'businesses': businesses})
+
 def business_qr_view(request, id):
     business = get_object_or_404(Business, id=id)
     if not business.qr_code:
