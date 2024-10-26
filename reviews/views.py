@@ -7,8 +7,9 @@ from .utils import \
 
 
 def home(request):
-    businesses = Business.objects.all()  # Get all businesses
-    return render(request, 'home.html', {'businesses': businesses})
+    businesses = []  # Replace with your actual data
+    print('Rendering home with businesses:', businesses)  # Print to console
+    return render(request, 'reviews/home.html', {'businesses': businesses})
 
 def business_qr_view(request, id):
     business = get_object_or_404(Business, id=id)
@@ -23,3 +24,7 @@ def review_stars(request, id):
 def feedback(request):
     return render(request, 'feedback.html')
 
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+print((BASE_DIR / 'reviews/templates/reviews/home.html').exists())
