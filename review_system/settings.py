@@ -26,20 +26,6 @@ DATABASES = {
 
 
 
-import os
-from dotenv import load_dotenv
-load_dotenv()
-#OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
-SECRET_KEY = os.getenv('SECRET_KEY', 'default_secret_key')  # Example for a secret key
-DEBUG = os.getenv('DEBUG', 'False') == 'True'  # Convert to boolean
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
-
-from pathlib import Path
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
