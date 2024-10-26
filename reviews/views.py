@@ -1,17 +1,23 @@
-# reviews/views.py
-from django.shortcuts import render, get_object_or_404, redirect
-from .models import Business
-from .utils import generate_qr_code
+# reviews/utils.py
+import os
+from io import BytesIO
 
-def business_qr_view(request, id):
-    business = get_object_or_404(Business, id=id)
-    if not business.qr_code:
-        generate_qr_code(business)
-    return render(request, 'business_qr.html', {'business': business})
+import qrcode
+from django.conf import settings
+from django.core.files import File
 
-def review_stars(request, id):
-    business = get_object_or_404(Business, id=id)
-    return render(request, 'review_stars.html', {'business': business})
 
-def feedback(request):
-    return render(request, 'feedback.html')
+def generate_qr_code(business):
+    # Define the URL to be encoded into the QR code, linking to the review page
+    qr_data = f"http://127.0.0.1:8000/reviews/{business.id}/rate"
+
+    # Create the QR code
+    qr = qrcode.make(qr_data)
+
+    # Save the QR code to a BytesIO stream, then save to the business instance
+    qr_io = BytesIO()
+    qr.save(qr_io, 'PNG')
+
+    # Define the filename and save without triggering a second save in the model
+    business.qr_code.save(f"{business.name}_qr.png", File(qr_io), save=False)
+    business.save()  # Save the model to update with the new QR code image path
