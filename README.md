@@ -1,6 +1,55 @@
-# 🎉 Business Review App: Where Reviews Go to Party! 🎉
+# 🎉 Business Review App: 🎉
 
 Welcome to the **Business Review App**, the most exhilarating place on the internet to **review** your favorite businesses—because what else are you gonna do with your free time? Watch paint dry?
+
+# Responsive Django App for Business Reviews
+
+## Overview
+Create a Django app with a mobile-responsive design, optimized for screens up to 600px wide. The app will facilitate business reviews using Bootstrap 5 for responsiveness, without relying on Django forms.
+
+## Key Features
+
+1. **QR Code Redirect**
+   QR codes lead users to an intermediary page within the app.
+   This page displays a 5-star rating system.
+
+2. **Rating System**
+   Clickable stars for each rating level (1-5).
+   Immediate submission upon star selection.
+   Prompts for user comments after rating.
+
+3. **User Authentication**
+   Requires users to be logged into Gmail.
+   Default login for Android users.
+
+4. **High Ratings (4-5 Stars)**
+   Display a thank you message.
+   Redirect users to complete their review on Google Business page.
+   Include pre-filled link for streamlined process.
+
+5. **Low Ratings (1-3 Stars)**
+   Redirect to an internal feedback form.
+   Open text box for detailed comments.
+   Feedback stored in app's dashboard/database.
+
+6. **Automated Experience**
+   Pre-fill Google review links with available parameters.
+   Streamline the process while adhering to Google's policies.
+
+## User Flow
+- User scans QR code.
+- App presents rating prompt.
+- High ratings: Redirect to Google for public review.
+- Low ratings: Capture feedback internally.
+
+## Technical Requirements
+- Django framework
+- Bootstrap 5 for responsive design
+- Maximum width: 600px
+- No use of Django forms.py
+
+This approach ensures a user-friendly experience while managing reviews effectively and complying with Google's policies.
+
 
 ## 🚀 Features
 
@@ -97,3 +146,5 @@ Happy reviewing! 🎉🎉
 
 
 ![alt text](image.png)
+
+
